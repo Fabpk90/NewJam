@@ -28,32 +28,39 @@ public class PlayerController : MonoBehaviour
     {
         timePassed = Time.time;
         Quest = Q;
+        StartCoroutine("QuestionClock");
     }
     
     private bool inputReceived = false;
     IEnumerator QuestionClock()
     {
-        var timeSinceQuestion = Time.time - timePassed;
-        if (inputReceived)
+        bool cont = true;
+        while (cont)
         {
-            if (timeSinceQuestion <= 5)
+            if (inputReceived)
             {
-                //Quest.questAnim.SetTrigger("Light");//
-                //Où alors les questions ont des fonctions PlayLight/Medium/Hard comme ça on peut gérer les bruits dans ces fonctions ?
-                //Et on a juste à les appeller ici, ça serait pour utiliser la surcharge d'une classe question vers Orage/Fusée etc
-            }
-            else if (timeSinceQuestion <= 15)
-            {
-                //Quest.questAnim.SetTrigger("Medium");//Medium scale reaction
-            }
-            else
-            {
-                //Quest.questAnim.SetTrigger("Heavy");//All Hell is breaking loose, please wait warmly.
+                var timeSinceQuestion = Time.time - timePassed;
+                if (timeSinceQuestion <= 5)
+                {
+                    //Quest.questAnim.SetTrigger("Light");
+                    //Où alors les questions ont des fonctions PlayLight/Medium/Hard comme ça on peut gérer les bruits dans ces fonctions ?
+                    //Et on a juste à les appeller ici, ça serait pour utiliser la surcharge d'une classe question vers Orage/Fusée etc
+                }
+                else if (timeSinceQuestion <= 15)
+                {
+                    //Quest.questAnim.SetTrigger("Medium");//Medium scale reaction
+                }
+                else
+                {
+                    //Quest.questAnim.SetTrigger("Heavy");//All Hell is breaking loose, please wait warmly.
+                }
+
+                cont = false;
+                //Probablement stopper la coroutine en vrai
             }
 
-            //Probablement stopper la coroutine en vrai
+            yield return new WaitForSeconds(1f); //L'appellera 1fois/seconde
         }
-        yield return new WaitForSeconds(1f); //L'appellera 1fois/seconde
     }
     
     // Update is called once per frame

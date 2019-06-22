@@ -16,5 +16,6 @@ public class StopRunning : MonoBehaviour
     public void StopAnimation()
     {
         anim.SetBool(IsRunning, false);
+        GameManager.Instance.player.canMove = true;
     }
 }

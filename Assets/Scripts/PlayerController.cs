@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public bool canMove;
 
     private float timePassed;
-
+    private QuestionMainScript Quest;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +24,10 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Called by the question manager to start the timer
     /// </summary>
-    public void QuestionStarted()
+    public void QuestionStarted(QuestionMainScript Q)
     {
         timePassed = Time.time;
+        Quest = Q;
     }
     
     private bool inputReceived = false;
@@ -36,15 +38,17 @@ public class PlayerController : MonoBehaviour
         {
             if (timeSinceQuestion <= 5)
             {
-                //Small scale reaction
+                //Quest.questAnim.SetTrigger("Light");//
+                //Où alors les questions ont des fonctions PlayLight/Medium/Hard comme ça on peut gérer les bruits dans ces fonctions ?
+                //Et on a juste à les appeller ici, ça serait pour utiliser la surcharge d'une classe question vers Orage/Fusée etc
             }
             else if (timeSinceQuestion <= 15)
             {
-                //Medium scale reaction
+                //Quest.questAnim.SetTrigger("Medium");//Medium scale reaction
             }
             else
             {
-                //All Hell is breaking loose, please wait warmly.
+                //Quest.questAnim.SetTrigger("Heavy");//All Hell is breaking loose, please wait warmly.
             }
 
             //Probablement stopper la coroutine en vrai

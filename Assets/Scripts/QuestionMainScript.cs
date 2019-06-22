@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class QuestionMainScript : MonoBehaviour
 {
-    private string quest;
+    public string quest;
     public Animator questAnim;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        questAnim = GetComponent<Animator>();
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        questAnim = GetComponentInChildren<Animator>();
     }
 }

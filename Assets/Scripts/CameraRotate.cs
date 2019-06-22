@@ -3,7 +3,7 @@
 public class CameraRotate : MonoBehaviour
 {
     public Transform player;
-    public float turnSpeed = 10f;
+    public float turnSpeed = 500f;
     public float pitch;
 
     private void Start()
@@ -21,7 +21,7 @@ public class CameraRotate : MonoBehaviour
         var position = player.position;
         transform.LookAt(position);
         
-        transform.RotateAround(position, Vector3.up, Input.GetAxisRaw("Mouse X") * turnSpeed);
+        transform.RotateAround(position, Vector3.up, Input.GetAxisRaw("Mouse X") * turnSpeed * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

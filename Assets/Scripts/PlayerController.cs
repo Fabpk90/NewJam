@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
             {
                 canMove = false;
             }
-            else if (Input.GetMouseButtonDown(2))
+            else if (Input.GetMouseButtonDown(2)) // middle btn
             {
                 canMove = false;
             }

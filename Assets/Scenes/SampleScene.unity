@@ -3993,7 +3993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5c7973d1b9304a4198f27343cf0ba91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: "Quelles pens\xE9es Quelles envies Quelles impulsions mes \xE9motions d\xE9clenchent-elles
+  quest: "Quelles pens\xE9es\nQuelles envies\nQuelles impulsions mes \xE9motions d\xE9clenchent-elles
     en moi en ce moment ?"
   questAnim: {fileID: 0}
   isSpawning: 0

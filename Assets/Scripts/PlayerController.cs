@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     private float timePassed;
     private QuestionMainScript _quest;
+
+    public TextMeshProUGUI text;
     
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,9 @@ public class PlayerController : MonoBehaviour
     {
         timePassed = Time.time;
         _quest = Q;
-        print("OOOHH YEAGHG");
+
+        text.enabled = true;
+        text.text = _quest.quest;
     }
     
     

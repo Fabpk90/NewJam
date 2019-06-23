@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuestionMainScript : MonoBehaviour
 {
+    [Multiline]
     public string quest;
     public Animator questAnim;
 

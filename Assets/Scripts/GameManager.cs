@@ -11,21 +11,40 @@ public class GameManager : MonoBehaviour
 
     public Spawner spawner;
     
-    public AudioClip musicLow;
-    public AudioClip musicMedium;
-    public AudioClip musicHigh;
-    
+    public AudioClip[] musicLow;
+    public AudioClip[] musicMedium;
+    public AudioClip[] musicHigh;
+
+
+    public AudioClip loopLow;
+    public AudioClip loopMedium;
+    public AudioClip loopHigh;
+
+    public int musicIndex; // 0->2->1
+
+    private AudioSource source0;
+    private AudioSource source1;
+
     // Start is called before the first frame update
     void Start()
     {
         if (!Instance)
         {
             Instance = this;
+
+            musicIndex = 0;
             
+            source0 = new AudioSource();
+            source1 = new AudioSource();
+
             player.QuestionStarted(question);
             Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
+
+            source0.clip = musicLow[musicIndex];
+            source0.Play();
             
-            AudioSource.PlayClipAtPoint(musicLow, Vector3.zero);
+            source1.clip = loopLow;
+            source1.Play();
             
         }
         else
@@ -41,5 +60,15 @@ public class GameManager : MonoBehaviour
             Vector2 v = (Random.insideUnitCircle * radius);
             Instantiate(toSpawn, new Vector3(v.x + position.x, position.y, v.y + position.z), Quaternion.identity);
         }
+    }
+
+    public void ChangeMusicIndex(int index)
+    {
+        musicIndex = index;
+        
+        //TODO: crossfade music
+        
+        source0.clip = musicLow[musicIndex];
+        source0.Play();
     }
 }

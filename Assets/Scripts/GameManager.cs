@@ -23,12 +23,12 @@ public class GameManager : MonoBehaviour
     public int musicIndex; // 0->2->1
     public int intensity;
 
-    private AudioSource source0;
-    private AudioSource source01;
+    private AudioSource sourcePlaying;
+    private AudioSource sourcePlayingBuffer;
 
     private AudioSource actualSource;
     
-    private AudioSource source1;
+    private AudioSource sourceLoop;
 
     // Start is called before the first frame update
     void Start()
@@ -40,19 +40,19 @@ public class GameManager : MonoBehaviour
             musicIndex = 0;
             intensity = 0;
             
-            source0 = new AudioSource();
-            source1 = new AudioSource();
+            sourcePlaying = new AudioSource();
+            sourceLoop = new AudioSource();
 
             player.QuestionStarted(question);
             Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
 
-            source0.clip = musicLow[intensity];
-            source0.Play();
+            sourcePlaying.clip = musicLow[intensity];
+            sourcePlaying.Play();
 
-            actualSource = source0;
+            actualSource = sourcePlaying;
             
-            source1.clip = loopLow;
-            source1.Play();
+            sourceLoop.clip = loopLow;
+            sourceLoop.Play();
             
         }
         else
@@ -79,28 +79,45 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CrossFade()
     {
+        AudioSource previousSource = null;
+        if (actualSource == sourcePlaying)
+        {
+            previousSource = sourcePlaying;
+            actualSource = sourcePlayingBuffer;
+        }
+            
+        else if (actualSource == sourcePlayingBuffer)
+        {
+            previousSource = sourcePlayingBuffer;
+            actualSource = sourcePlaying;
+        }
+            
+        if(!sourceLoop.isPlaying)
+            sourceLoop.Play();
         
         
         //TODO: crossfade music
         if (intensity == 0)
         {
-            source0.clip = musicLow[musicIndex];
+            actualSource.clip = musicLow[musicIndex];
         }
         else if(intensity == 1)
         {
-            source0.clip = musicMedium[musicIndex];
+            actualSource.clip = musicMedium[musicIndex];
         }
         else if(intensity == 2)
         {
-            source0.clip = musicHigh[musicIndex];
+            actualSource.clip = musicHigh;
+            sourceLoop.Stop();
         }
         
         for (int i = 0; i < 10; i++)
         {
-            
+            previousSource.volume = 1 - i / 10;
+            actualSource.volume = i/10;
             yield return new WaitForSeconds(0.1f);
         }
         
-        source0.Play();
+        actualSource.Play();
     }
 }

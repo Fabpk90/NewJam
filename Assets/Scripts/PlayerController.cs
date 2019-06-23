@@ -71,8 +71,15 @@ public class PlayerController : MonoBehaviour
                // playerAnim.ResetTrigger("ToDebout");
                 
                 GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+                if (!_quest.isSpawning)
+                {
+                    _quest.questAnim.SetBool("IsRunning", true);
+                }
+                else
+                {
+                    GameManager.Instance.Spawn(_quest.amount, _quest.toSpawning, _quest.position, 5f);
+                }
                 
-                _quest.questAnim.SetBool("IsRunning", true);
                 
             }
             else if (Input.GetMouseButtonDown(1) && _quest) // right

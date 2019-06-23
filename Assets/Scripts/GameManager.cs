@@ -24,9 +24,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Spawn(uint amount, GameObject toSpawn, Vector3 position, float radius)
     {
-        
+        for (uint i = 0; i < amount; i++)
+        {
+            Vector2 v = (Random.insideUnitCircle * radius);
+            Instantiate(toSpawn, new Vector3(v.x + position.x, v.y + position.y, position.z), Quaternion.identity);
+        }
     }
 }

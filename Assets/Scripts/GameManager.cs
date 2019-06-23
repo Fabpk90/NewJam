@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     
     private AudioSource sourceLoop;
 
+    public float waitTimeBeforeFirstQuestion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +42,12 @@ public class GameManager : MonoBehaviour
 
             musicIndex = 0;
             intensity = 2;
-            
-            sourcePlaying = new AudioSource();
-            sourceLoop = new AudioSource();
 
-            player.QuestionStarted(question);
+            sourcePlaying = gameObject.AddComponent<AudioSource>();
+            sourceLoop = gameObject.AddComponent<AudioSource>();
+            sourcePlayingBuffer = gameObject.AddComponent<AudioSource>();
+
+            StartCoroutine(WaitAndLaunchQuestion(waitTimeBeforeFirstQuestion, question));
             //Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
 
             sourcePlaying.clip = pt1[intensity];
@@ -60,6 +63,12 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator WaitAndLaunchQuestion(float amount, QuestionMainScript q)
+    {
+        yield return new WaitForSeconds(amount);
+        player.QuestionStarted(q);
     }
 
     public void Spawn(uint amount, GameObject toSpawn, Vector3 position, float radius)

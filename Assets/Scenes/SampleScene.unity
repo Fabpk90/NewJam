@@ -1727,20 +1727,21 @@ MonoBehaviour:
   question: {fileID: 1303256250}
   player: {fileID: 1806494640669204052}
   spawner: {fileID: 11400000, guid: 8fbe88b9aad81b34c9dd4e1ed75949c0, type: 2}
-  musicLow:
+  pt1:
   - {fileID: 8300000, guid: 286af18b611d3f84584029b741a1ccc9, type: 3}
   - {fileID: 8300000, guid: 1f3c08621752ca14a989f14b2a0397ec, type: 3}
   - {fileID: 8300000, guid: 3907019babb19004abb03c12f99357c0, type: 3}
-  musicMedium:
+  pt2:
   - {fileID: 8300000, guid: f3accb52227597349925d13fe7b4ca74, type: 3}
   - {fileID: 8300000, guid: 28b429ef3c5e9004cb70f2877a0b45d2, type: 3}
   - {fileID: 8300000, guid: 4f5296b599e058543b252cb575c7094c, type: 3}
-  musicHigh: {fileID: 8300000, guid: 1c8f38ef4559bf44697e6df9dfdcb080, type: 3}
+  pt3: {fileID: 8300000, guid: 1c8f38ef4559bf44697e6df9dfdcb080, type: 3}
   loopLow: {fileID: 8300000, guid: cb3a243055745144faf9f18c071f8e98, type: 3}
   loopMedium: {fileID: 8300000, guid: 086c1e704a204444ca352c0c1828f4ff, type: 3}
   loopHigh: {fileID: 8300000, guid: 10d20eb02529b44498de11366182320a, type: 3}
   musicIndex: 0
   intensity: 0
+  waitTimeBeforeFirstQuestion: 2
 --- !u!4 &615325875
 Transform:
   m_ObjectHideFlags: 0

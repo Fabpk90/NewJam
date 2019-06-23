@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
            // print(_quest);
             if (Input.GetMouseButtonDown(0) && _quest) // left button
             {
-                print("Yoo");
                 canMove = false;
                // playerAnim.SetTrigger("ToAssis");
                // playerAnim.ResetTrigger("ToCouche");

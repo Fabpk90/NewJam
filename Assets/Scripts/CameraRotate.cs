@@ -12,7 +12,7 @@ public class CameraRotate : MonoBehaviour
         Cursor.visible = false;
         
         var position = player.position;
-        transform.position = new Vector3(position.x - 20f, y: position.y + pitch, position.z - 20f);
+        transform.position = new Vector3(position.x - 30f, y: position.y + pitch, position.z - 30f);
     }
 
     // Update is called once per frame

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     
     public AudioClip[] musicLow;
     public AudioClip[] musicMedium;
-    public AudioClip[] musicHigh;
+    public AudioClip musicHigh;
 
 
     public AudioClip loopLow;
@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     private AudioSource source0;
     private AudioSource source01;
+
+    private AudioSource actualSource;
     
     private AudioSource source1;
 
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
 
             source0.clip = musicLow[intensity];
             source0.Play();
+
+            actualSource = source0;
             
             source1.clip = loopLow;
             source1.Play();
@@ -69,6 +73,13 @@ public class GameManager : MonoBehaviour
     public void ChangeMusicIndex(int index)
     {
         musicIndex = index;
+
+        StartCoroutine(CrossFade());
+    }
+
+    IEnumerator CrossFade()
+    {
+        
         
         //TODO: crossfade music
         if (intensity == 0)
@@ -83,7 +94,13 @@ public class GameManager : MonoBehaviour
         {
             source0.clip = musicHigh[musicIndex];
         }
-       
+        
+        for (int i = 0; i < 10; i++)
+        {
+            
+            yield return new WaitForSeconds(0.1f);
+        }
+        
         source0.Play();
     }
 }

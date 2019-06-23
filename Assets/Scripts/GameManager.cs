@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
             
             sourceLoop.clip = loopHigh;
             sourceLoop.Play();
-            
         }
         else
         {
@@ -98,10 +97,14 @@ public class GameManager : MonoBehaviour
         }
         else if(intensity == 1)
         {
+            // Spawn flowers
+            Spawn(spawner.amount , spawner.toSpawn, spawner.position, spawner.radius);
             sourceLoop.clip = loopMedium;
         }
         else if(intensity == 2)
         {
+            //Spawn flowers
+            // Display arc-en-ciel
             sourceLoop.clip = loopHigh;
         }
         

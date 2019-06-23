@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     public float firstPalier;
     public float secondPalier;
     public float thirdPalier;
-    
+
+    [SerializeField] GameObject Orage;
     
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
         playerAnim = GetComponent<Animator>();
         //anim.SetBool("monBool", true/false);
+
+        Orage.SetActive(false);
     }
 
     /// <summary>
@@ -61,8 +64,6 @@ public class PlayerController : MonoBehaviour
                 
                 GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 Action();
-                
-                
             }
             else if (Input.GetMouseButtonDown(1) && _quest) // right
             {
@@ -91,6 +92,8 @@ public class PlayerController : MonoBehaviour
 
     private void Action()
     {
+        Orage.SetActive(true);
+
         var timeElapsed = Time.time - timePassed;
 
         if (timeElapsed <= firstPalier)

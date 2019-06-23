@@ -21,8 +21,11 @@ public class GameManager : MonoBehaviour
     public AudioClip loopHigh;
 
     public int musicIndex; // 0->2->1
+    public int intensity;
 
     private AudioSource source0;
+    private AudioSource source01;
+    
     private AudioSource source1;
 
     // Start is called before the first frame update
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
             musicIndex = 0;
+            intensity = 0;
             
             source0 = new AudioSource();
             source1 = new AudioSource();
@@ -40,7 +44,7 @@ public class GameManager : MonoBehaviour
             player.QuestionStarted(question);
             Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
 
-            source0.clip = musicLow[musicIndex];
+            source0.clip = musicLow[intensity];
             source0.Play();
             
             source1.clip = loopLow;
@@ -67,8 +71,19 @@ public class GameManager : MonoBehaviour
         musicIndex = index;
         
         //TODO: crossfade music
-        
-        source0.clip = musicLow[musicIndex];
+        if (intensity == 0)
+        {
+            source0.clip = musicLow[musicIndex];
+        }
+        else if(intensity == 1)
+        {
+            source0.clip = musicMedium[musicIndex];
+        }
+        else if(intensity == 2)
+        {
+            source0.clip = musicHigh[musicIndex];
+        }
+       
         source0.Play();
     }
 }

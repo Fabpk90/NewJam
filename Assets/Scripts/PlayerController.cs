@@ -31,29 +31,6 @@ public class PlayerController : MonoBehaviour
         print("OOOHH YEAGHG");
     }
     
-    private bool inputReceived = false;
-    public void QuestionClock()
-    {
-        if (inputReceived)
-        {
-            var timeSinceQuestion = Time.time - timePassed;
-            if (timeSinceQuestion <= 5)
-            {
-                //Quest.questAnim.SetTrigger("Light");
-                //Où alors les questions ont des fonctions PlayLight/Medium/Hard comme ça on peut gérer les bruits dans ces fonctions ?
-                //Et on a juste à les appeller ici, ça serait pour utiliser la surcharge d'une classe question vers Orage/Fusée etc
-            }
-            else if (timeSinceQuestion <= 15)
-            {
-                //Quest.questAnim.SetTrigger("Medium");//Medium scale reaction
-            }
-            else
-            {
-                //Quest.questAnim.SetTrigger("Heavy");//All Hell is breaking loose, please wait warmly.
-            }
-            //Probablement stopper la coroutine en vrai
-        }
-    }
     
     // Update is called once per frame
     void Update()
@@ -73,6 +50,7 @@ public class PlayerController : MonoBehaviour
                 GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 if (!_quest.isSpawning)
                 {
+                    _quest.questAnim.SetFloat("ClockTime",Time.time - timePassed);
                     _quest.questAnim.SetBool("IsRunning", true);
                 }
                 else
@@ -91,6 +69,7 @@ public class PlayerController : MonoBehaviour
                 
                GetComponentInChildren<MeshRenderer>().material.color = Color.green;
                
+               _quest.questAnim.SetFloat("ClockTime",Time.time - timePassed);
                _quest.questAnim.SetBool("IsRunning", true);
             }
             else if (Input.GetMouseButtonDown(2) && _quest) // middle btn
@@ -102,6 +81,7 @@ public class PlayerController : MonoBehaviour
                 
                GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
                
+               _quest.questAnim.SetFloat("ClockTime",Time.time - timePassed);
                _quest.questAnim.SetBool("IsRunning", true);
             }
         }

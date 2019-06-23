@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
         text.enabled = true;
         text.text = _quest.quest;
+        
+        GameManager.Instance.ChangeMusicIndex(1);
     }
     
     
@@ -95,7 +97,6 @@ public class PlayerController : MonoBehaviour
         if (timeElapsed <= firstPalier)
         {
             GameManager.Instance.intensity = 0;
-            GameManager.Instance.ChangeMusicIndex(1);
         }
         else if (timeElapsed <= secondPalier)
         {
@@ -105,6 +106,8 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.intensity = 2;
         }
+        
+        GameManager.Instance.ChangeMusicIndex(2);
         
         if (!_quest.isSpawning)
         {

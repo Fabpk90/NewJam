@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,9 @@ public class GameManager : MonoBehaviour
 
     public Spawner spawner;
     
-    public AudioClip[] musicLow;
-    public AudioClip[] musicMedium;
-    public AudioClip musicHigh;
+    [FormerlySerializedAs("musicLow")] public AudioClip[] pt1;
+    [FormerlySerializedAs("musicMedium")] public AudioClip[] pt2;
+    [FormerlySerializedAs("musicHigh")] public AudioClip pt3;
 
 
     public AudioClip loopLow;
@@ -38,20 +39,20 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
             musicIndex = 0;
-            intensity = 0;
+            intensity = 2;
             
             sourcePlaying = new AudioSource();
             sourceLoop = new AudioSource();
 
             player.QuestionStarted(question);
-            Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
+            //Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
 
-            sourcePlaying.clip = musicLow[intensity];
+            sourcePlaying.clip = pt1[intensity];
             sourcePlaying.Play();
 
             actualSource = sourcePlaying;
             
-            sourceLoop.clip = loopLow;
+            sourceLoop.clip = loopHigh;
             sourceLoop.Play();
             
         }
@@ -77,6 +78,27 @@ public class GameManager : MonoBehaviour
         StartCoroutine(CrossFade());
     }
 
+    public void PlayReflexionSound()
+    {
+        actualSource.Stop();
+        
+        
+        if (intensity == 0)
+        {
+            sourceLoop.clip = loopLow;
+        }
+        else if(intensity == 1)
+        {
+            sourceLoop.clip = loopMedium;
+        }
+        else if(intensity == 2)
+        {
+            sourceLoop.clip = loopHigh;
+        }
+        
+        sourceLoop.Play();
+    }
+
     IEnumerator CrossFade()
     {
         AudioSource previousSource = null;
@@ -96,18 +118,17 @@ public class GameManager : MonoBehaviour
             sourceLoop.Play();
         
         
-        //TODO: crossfade music
-        if (intensity == 0)
+        if (musicIndex == 0)
         {
-            actualSource.clip = musicLow[musicIndex];
+            actualSource.clip = pt1[intensity];
         }
-        else if(intensity == 1)
+        else if(musicIndex == 1)
         {
-            actualSource.clip = musicMedium[musicIndex];
+            actualSource.clip = pt2[intensity];
         }
-        else if(intensity == 2)
+        else if(musicIndex == 2)
         {
-            actualSource.clip = musicHigh;
+            actualSource.clip = pt3;
             sourceLoop.Stop();
         }
         

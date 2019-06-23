@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
                // playerAnim.ResetTrigger("ToDebout");
                 
                GetComponentInChildren<MeshRenderer>().material.color = Color.green;
+               
+               _quest.questAnim.SetBool("IsRunning", true);
             }
             else if (Input.GetMouseButtonDown(2) && _quest) // middle btn
             {
@@ -92,6 +94,8 @@ public class PlayerController : MonoBehaviour
                // playerAnim.ResetTrigger("ToAssis");
                 
                GetComponentInChildren<MeshRenderer>().material.color = Color.yellow;
+               
+               _quest.questAnim.SetBool("IsRunning", true);
             }
         }
     }

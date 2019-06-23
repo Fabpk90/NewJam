@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     public Spawner spawner;
     
+    public AudioClip musicLow;
+    public AudioClip musicMedium;
+    public AudioClip musicHigh;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,9 @@ public class GameManager : MonoBehaviour
             
             player.QuestionStarted(question);
             Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
+            
+            AudioSource.PlayClipAtPoint(musicLow, Vector3.zero);
+            
         }
         else
         {

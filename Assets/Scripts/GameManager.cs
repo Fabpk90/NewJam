@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public QuestionMainScript question;
     public PlayerController player;
+
+    public Spawner spawner;
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             
             player.QuestionStarted(question);
+            Spawn(spawner.amount, spawner.toSpawn, spawner.position, spawner.radius);
         }
         else
         {
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
         for (uint i = 0; i < amount; i++)
         {
             Vector2 v = (Random.insideUnitCircle * radius);
-            Instantiate(toSpawn, new Vector3(v.x + position.x, v.y + position.y, position.z), Quaternion.identity);
+            Instantiate(toSpawn, new Vector3(v.x + position.x, position.y, v.y + position.z), Quaternion.identity);
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6073df0c340eb1438c6e6515fcbe365, type: 3}
   m_Name: SapinSpawner
   m_EditorClassIdentifier: 
-  toSpawn: {fileID: 1290407020055314655, guid: a821ef11fc474224e81738b300c6f576, type: 3}
-  amount: 200
-  position: {x: 0, y: 0, z: 0}
-  radius: 15
+  toSpawn: {fileID: -927199367670048503, guid: 6617b5bf02975804c99dfe4bbb47b742, type: 3}
+  amount: 100
+  position: {x: -80, y: 2, z: 0}
+  radius: 10

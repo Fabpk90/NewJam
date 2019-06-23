@@ -98,16 +98,21 @@ public class PlayerController : MonoBehaviour
 
         if (timeElapsed <= firstPalier)
         {
-            GameManager.Instance.intensity = 0;
+            Debug.Log("first palier");
+            GameManager.Instance.intensity = 1;
         }
         else if (timeElapsed <= secondPalier)
         {
-            GameManager.Instance.intensity = 1;
+            Debug.Log("second palier");
+            GameManager.Instance.intensity = 2;
         }
         else if (timeElapsed <= thirdPalier)
         {
-            GameManager.Instance.intensity = 2;
+            Debug.Log("third palier");
+            GameManager.Instance.intensity = 3;
         }
+
+        GameManager.Instance.lockUpdate = false;
         
         GameManager.Instance.ChangeMusicIndex(2);
         

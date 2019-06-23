@@ -33,6 +33,16 @@ public class GameManager : MonoBehaviour
 
     public float waitTimeBeforeFirstQuestion;
 
+    GameObject Rainbow;
+
+    public bool lockUpdate = true;
+
+    void Awake()
+    {
+        Rainbow = GameObject.Find("Rainbow");
+        Rainbow.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +51,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
 
             musicIndex = 0;
-            intensity = 2;
+            intensity = 0;
 
             sourcePlaying = gameObject.AddComponent<AudioSource>();
             sourceLoop = gameObject.AddComponent<AudioSource>();
@@ -62,6 +72,34 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Update()
+    {
+        if (!lockUpdate)
+        {
+            if (intensity == 1)
+            {
+                Debug.Log("intensity 1");
+            }
+            else if(intensity == 2)
+            {
+                Debug.Log("intensity 2");
+                // Spawn flowers
+                Spawn(100 , spawner.toSpawn, spawner.position, spawner.radius);
+            }
+            else if(intensity == 3)
+            {
+                Debug.Log("intensity 3");
+                //Spawn flowers
+                Spawn(300 , spawner.toSpawn, spawner.position, spawner.radius * 2);
+                Rainbow.SetActive(true);
+                // Display arc-en-ciel
+            }
+
+            lockUpdate = true;
+        }
+
     }
 
     IEnumerator WaitAndLaunchQuestion(float amount, QuestionMainScript q)
@@ -93,18 +131,31 @@ public class GameManager : MonoBehaviour
         
         if (intensity == 0)
         {
+            Debug.Log("intensity 1");
             sourceLoop.clip = loopLow;
         }
         else if(intensity == 1)
         {
+            Debug.Log("intensity 2");
             // Spawn flowers
             Spawn(spawner.amount , spawner.toSpawn, spawner.position, spawner.radius);
+            Spawn(spawner.amount , spawner.toSpawn, new Vector3(80f, 2f, 0f), spawner.radius);
+            Spawn(spawner.amount , spawner.toSpawn, new Vector3(80f, 2f, 80f), spawner.radius);
+            Spawn(spawner.amount , spawner.toSpawn, new Vector3(80f, 2f, -80f), spawner.radius);
+
             sourceLoop.clip = loopMedium;
         }
         else if(intensity == 2)
         {
+            Debug.Log("intensity 3");
             //Spawn flowers
+            Spawn(spawner.amount * 3 , spawner.toSpawn, spawner.position, spawner.radius * 2);
+            Spawn(spawner.amount * 3 , spawner.toSpawn, new Vector3(80f, 2f, 0f), spawner.radius * 2);
+            Spawn(spawner.amount * 3 , spawner.toSpawn, new Vector3(80f, 2f, 80f), spawner.radius * 2);
+            Spawn(spawner.amount * 3 , spawner.toSpawn, new Vector3(80f, 2f, -80f), spawner.radius * 2);
+            Rainbow.SetActive(true);
             // Display arc-en-ciel
+            
             sourceLoop.clip = loopHigh;
         }
         

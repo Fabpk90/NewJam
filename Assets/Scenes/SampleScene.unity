@@ -1727,9 +1727,20 @@ MonoBehaviour:
   question: {fileID: 1303256250}
   player: {fileID: 1806494640669204052}
   spawner: {fileID: 11400000, guid: 8fbe88b9aad81b34c9dd4e1ed75949c0, type: 2}
-  musicLow: {fileID: 8300000, guid: fb80214c196be734892f2728c43a6a92, type: 3}
-  musicMedium: {fileID: 0}
-  musicHigh: {fileID: 0}
+  musicLow:
+  - {fileID: 8300000, guid: 286af18b611d3f84584029b741a1ccc9, type: 3}
+  - {fileID: 8300000, guid: 1f3c08621752ca14a989f14b2a0397ec, type: 3}
+  - {fileID: 8300000, guid: 3907019babb19004abb03c12f99357c0, type: 3}
+  musicMedium:
+  - {fileID: 8300000, guid: f3accb52227597349925d13fe7b4ca74, type: 3}
+  - {fileID: 8300000, guid: 28b429ef3c5e9004cb70f2877a0b45d2, type: 3}
+  - {fileID: 8300000, guid: 4f5296b599e058543b252cb575c7094c, type: 3}
+  musicHigh: {fileID: 8300000, guid: 1c8f38ef4559bf44697e6df9dfdcb080, type: 3}
+  loopLow: {fileID: 8300000, guid: cb3a243055745144faf9f18c071f8e98, type: 3}
+  loopMedium: {fileID: 8300000, guid: 086c1e704a204444ca352c0c1828f4ff, type: 3}
+  loopHigh: {fileID: 8300000, guid: 10d20eb02529b44498de11366182320a, type: 3}
+  musicIndex: 0
+  intensity: 0
 --- !u!4 &615325875
 Transform:
   m_ObjectHideFlags: 0
@@ -6006,9 +6017,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b01188971ecd4bb458c8479193973888, type: 2}
-  m_sharedMaterial: {fileID: -7655457541162739897, guid: b01188971ecd4bb458c8479193973888,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8514,8 +8524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnim: {fileID: 0}
-  canMove: 0
+  canMove: 1
   text: {fileID: 1926153308}
+  firstPalier: 0
+  secondPalier: 0
+  thirdPalier: 0
 --- !u!81 &1806494640669204053
 AudioListener:
   m_ObjectHideFlags: 0
